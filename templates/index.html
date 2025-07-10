@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}{{ personal_info.name }} - Terminal Portfolio{% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col lg:flex-row p-4 lg:p-8 gap-6">
+    <!-- Profile Section - Left Side -->
+    <div class="w-full lg:w-2/5 flex items-center justify-center animate-slide-in-left">
+        <div class="relative w-full max-w-md">
+            <!-- Terminal Profile Card -->
+            <div id="profile-card" class="profile-card">
+                <!-- Profile Image Section -->
+                <div class="profile-image-section">
+                    <div class="profile-avatar">
+                        {{ personal_info.avatar or personal_info.name[:2].upper() }}
+                    </div>
+                </div>
+
+                <!-- Profile Details Section -->
+                <div class="profile-details-section">
+                    <div class="profile-name">{{ personal_info.name }}</div>
+                    <div class="profile-title" onclick="window.location.href='/about'">{{ personal_info.title }}</div>
+                    <div class="profile-location">
+                        <span>📍</span>
+                        <span class="ml-1">{{ personal_info.location }}</span>
+                    </div>
+                    <div class="profile-status">{{ personal_info.status }}</div>
+                </div>
+            </div>
+
+            <!-- Quick Stats Grid -->
+            <div class="stats-grid mt-6">
+                <div class="stat-item">
+                    <span class="stat-value">{{ personal_info.experience }}</span>
+                    <div class="stat-label">Experience</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ personal_info.projects_count }}</span>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ personal_info.coffee_consumed }}</span>
+                    <div class="stat-label">Coffee</div>
+                </div>
+            </div>
+
+            <!-- Quick Skills -->
+            <div class="mt-6">
+                <h3 class="text-white text-lg font-semibold mb-3 text-center">Core Skills</h3>
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">AI/ML</span>
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">TensorFlow</span>
+                </div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="mt-6 space-y-3 text-sm">
+                <div class="flex items-center text-gray-300">
+                    <span class="text-terminal-green mr-3">📧</span>
+                    <span>{{ personal_info.email }}</span>
+                </div>
+                <div class="flex items-center text-gray-300">
+                    <span class="text-terminal-green mr-3">📱</span>
+                    <span>{{ personal_info.phone }}</span>
+                </div>
+                <div class="flex items-center text-gray-300">
+                    <span class="text-terminal-green mr-3">🔗</span>
+                    <a href="{{ personal_info.github }}" target="_blank" class="text-terminal-cyan hover:text-terminal-green transition-colors">
+                        GitHub Profile
+                    </a>
+                </div>
+                <div class="flex items-center text-gray-300">
+                    <span class="text-terminal-green mr-3">💼</span>
+                    <a href="{{ personal_info.linkedin }}" target="_blank" class="text-terminal-cyan hover:text-terminal-green transition-colors">
+                        LinkedIn Profile
+                    </a>
+                </div>
+            </div>
+
+            <!-- Terminal Prompt -->
+            <div class="mt-6 text-center">
+                <div class="text-terminal-cyan text-sm">
+                    <span>user@portfolio:~$ </span>
+                    <span class="animate-typewriter">explore_portfolio</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Terminal Section - Right Side -->
+    <div class="w-full lg:w-3/5 animate-slide-in-right">
+        <div class="terminal-window h-full min-h-[600px] flex flex-col">
+            <!-- Terminal Header -->
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">utkarsh@portfolio:~</div>
+            </div>
+
+            <!-- Terminal Content -->
+            <div id="terminal-content" class="terminal-content flex-1">
+                <!-- Welcome message will be inserted here by JavaScript -->
+            </div>
+
+            <!-- Terminal Input -->
+            <div class="p-4 border-t border-terminal-green">
+                <form id="terminal-form" class="flex items-center">
+                    <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                    <input
+                        id="terminal-input"
+                        type="text"
+                        class="terminal-input"
+                        autocomplete="off"
+                        autofocus
+                        placeholder="Type 'help' to get started..."
+                    />
+                    <span class="terminal-cursor">█</span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center py-6 text-terminal-green opacity-50">
+    <p>&copy; 2024 {{ personal_info.name }}. Built with ❤️ and lots of ☕</p>
+</footer>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Page-specific JavaScript enhancements
+document.addEventListener('DOMContentLoaded', function() {
+    // Focus management
+    const terminalInput = document.getElementById('terminal-input');
+    
+    // Auto-focus terminal input
+    setTimeout(() => {
+        if (terminalInput) {
+            terminalInput.focus();
+        }
+    }, 100);
+
+    // Profile card interaction
+    const profileCard = document.getElementById('profile-card');
+    if (profileCard) {
+        profileCard.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.02)';
+        });
+        
+        profileCard.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    }
+
+    // Add typing indicator
+    let typingIndicator = false;
+    if (terminalInput) {
+        terminalInput.addEventListener('input', function() {
+            if (!typingIndicator) {
+                typingIndicator = true;
+                setTimeout(() => {
+                    typingIndicator = false;
+                }, 1000);
+            }
+        });
+    }
+
+    // Add command suggestions
+    const commands = ['help', 'about', 'projects', 'skills', 'journey', 'contact', 'ls', 'clear'];
+    
+    // Easter egg - Konami code
+    let konamiCode = [];
+    const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // Up, Up, Down, Down, Left, Right, Left, Right, B, A
+    
+    document.addEventListener('keydown', function(e) {
+        konamiCode.push(e.keyCode);
+        if (konamiCode.length > konamiSequence.length) {
+            konamiCode.shift();
+        }
+        
+        if (konamiCode.join(',') === konamiSequence.join(',')) {
+            // Easter egg activated
+            document.body.style.animation = 'glow 2s ease-in-out infinite';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 10000);
+        }
+    });
+});
+</script>
+{% endblock %}

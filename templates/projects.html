@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - {{ personal_info.name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen p-4 lg:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="terminal-window mb-8 animate-fade-in">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">projects.exe</div>
+            </div>
+            <div class="terminal-content">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2">Portfolio Projects</h1>
+                        <p class="text-terminal-green">A collection of my work and experiments</p>
+                    </div>
+                    <a href="/" class="btn text-terminal-cyan hover:text-terminal-green transition-colors">
+                        ← Back to Terminal
+                    </a>
+                </div>
+                
+                <!-- Terminal Breadcrumb -->
+                <div class="text-sm mb-4">
+                    <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                    <span class="text-white">ls -la projects/</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {% for project in projects %}
+            <div class="project-card animate-fade-in" style="animation-delay: {{ loop.index * 0.1 }}s">
+                <!-- Project Header -->
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <div class="text-terminal-cyan text-sm">{{ project.year }}</div>
+                    </div>
+                    <div class="project-category">{{ project.category }}</div>
+                </div>
+
+                <!-- Project Description -->
+                <p class="project-description">{{ project.description }}</p>
+
+                <!-- Technologies -->
+                <div class="project-tech">
+                    {% for tech in project.technologies %}
+                    <span class="tech-tag">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+
+                <!-- Features -->
+                {% if project.features %}
+                <div class="mb-4">
+                    <h4 class="text-white font-semibold mb-2">Key Features:</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        {% for feature in project.features %}
+                        <li>• {{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <!-- Project Links -->
+                <div class="project-links">
+                    {% if project.github and project.github != '#' %}
+                    <a href="{{ project.github }}" target="_blank" class="project-link">
+                        <span>🔗</span> GitHub
+                    </a>
+                    {% endif %}
+                    {% if project.demo and project.demo != '#' %}
+                    <a href="{{ project.demo }}" target="_blank" class="project-link">
+                        <span>🚀</span> Live Demo
+                    </a>
+                    {% endif %}
+                </div>
+
+                <!-- Status Badge -->
+                <div class="mt-4 flex justify-between items-center">
+                    <div class="flex items-center">
+                        {% if project.status == 'completed' %}
+                        <span class="w-3 h-3 bg-terminal-green rounded-full mr-2"></span>
+                        <span class="text-terminal-green text-sm">Completed</span>
+                        {% elif project.status == 'in-progress' %}
+                        <span class="w-3 h-3 bg-terminal-yellow rounded-full mr-2 animate-pulse"></span>
+                        <span class="text-terminal-yellow text-sm">In Progress</span>
+                        {% else %}
+                        <span class="w-3 h-3 bg-terminal-blue rounded-full mr-2"></span>
+                        <span class="text-terminal-blue text-sm">Planned</span>
+                        {% endif %}
+                    </div>
+                    <div class="text-terminal-cyan text-sm">ID: {{ project.id }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Terminal Footer -->
+        <div class="terminal-window mt-8 animate-fade-in">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">project_stats.txt</div>
+            </div>
+            <div class="terminal-content">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-2xl font-bold text-terminal-green">{{ projects|length }}</div>
+                        <div class="text-gray-400 text-sm">Total Projects</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-terminal-cyan">{{ projects|selectattr('status', 'equalto', 'completed')|list|length }}</div>
+                        <div class="text-gray-400 text-sm">Completed</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-terminal-yellow">{{ projects|selectattr('status', 'equalto', 'in-progress')|list|length }}</div>
+                        <div class="text-gray-400 text-sm">In Progress</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-terminal-blue">{{ projects|selectattr('category', 'equalto', 'AI/ML')|list|length }}</div>
+                        <div class="text-gray-400 text-sm">AI/ML Projects</div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <p class="text-terminal-green">
+                        <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                        <span class="text-white">echo "More projects coming soon..."</span>
+                    </p>
+                    <p class="text-terminal-green mt-2">More projects coming soon...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add hover animations to project cards
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Add click animations to project links
+    const projectLinks = document.querySelectorAll('.project-link');
+    
+    projectLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            ripple.style.position = 'absolute';
+            ripple.style.borderRadius = '50%';
+            ripple.style.background = 'rgba(0, 255, 255, 0.6)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.left = e.offsetX + 'px';
+            ripple.style.top = e.offsetY + 'px';
+            ripple.style.width = '20px';
+            ripple.style.height = '20px';
+            
+            this.style.position = 'relative';
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+});
+
+// Add ripple animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+</script>
+{% endblock %}

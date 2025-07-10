@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio - {{ personal_info.name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-black text-green-400 p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="flex items-center mb-8">
+            <a href="/" class="flex items-center text-cyan-400 hover:text-cyan-300 transition-colors mr-6">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Terminal
+            </a>
+            <h1 class="text-4xl font-bold text-white">Portfolio</h1>
+        </div>
+
+        <!-- Terminal-style breadcrumb -->
+        <div class="mb-8 font-mono text-sm">
+            <span class="text-cyan-400">utkarsh@portfolio:~$ </span>
+            <span class="text-white">cd portfolio && ls -la</span>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for project in projects %}
+            <div class="bg-gray-900 border border-gray-700 rounded-lg overflow-hidden hover:border-green-400 transition-all duration-300 hover:shadow-lg hover:shadow-green-400/20">
+                <!-- Project Header -->
+                <div class="bg-gradient-to-r from-purple-500 to-pink-500 p-4">
+                    <div class="flex items-center justify-between text-white">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                        </svg>
+                        <div class="flex space-x-2">
+                            <a href="{{ project.github }}" class="p-2 bg-black/20 rounded-full hover:bg-black/40 transition-colors">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </a>
+                            <a href="{{ project.demo }}" class="p-2 bg-black/20 rounded-full hover:bg-black/40 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Content -->
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-3">{{ project.title }}</h3>
+                    <p class="text-gray-300 mb-4 text-sm leading-relaxed">{{ project.description }}</p>
+                    
+                    <!-- Technologies -->
+                    <div class="flex flex-wrap gap-2">
+                        {% for tech in project.technologies %}
+                        <span class="px-3 py-1 bg-green-400/20 text-green-400 rounded-full text-xs border border-green-400/30">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Stats Section -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-gray-900 border border-gray-700 rounded-lg p-6 text-center">
+                <div class="text-3xl font-bold text-green-400 mb-2">15+</div>
+                <div class="text-gray-300 text-sm">Projects Completed</div>
+            </div>
+            <div class="bg-gray-900 border border-gray-700 rounded-lg p-6 text-center">
+                <div class="text-3xl font-bold text-blue-400 mb-2">8+</div>
+                <div class="text-gray-300 text-sm">Technologies</div>
+            </div>
+            <div class="bg-gray-900 border border-gray-700 rounded-lg p-6 text-center">
+                <div class="text-3xl font-bold text-purple-400 mb-2">100%</div>
+                <div class="text-gray-300 text-sm">Satisfaction Rate</div>
+            </div>
+            <div class="bg-gray-900 border border-gray-700 rounded-lg p-6 text-center">
+                <div class="text-3xl font-bold text-yellow-400 mb-2">∞</div>
+                <div class="text-gray-300 text-sm">Learning</div>
+            </div>
+        </div>
+
+        <!-- Terminal-style footer -->
+        <div class="mt-12 font-mono text-sm">
+            <span class="text-cyan-400">utkarsh@portfolio:~$ </span>
+            <span class="text-white">echo "Thanks for viewing my portfolio!"</span>
+            <div class="text-green-400 mt-2">Thanks for viewing my portfolio!</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,362 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - {{ personal_info.name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen p-4 lg:p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="terminal-window mb-8 animate-fade-in">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">contact.exe</div>
+            </div>
+            <div class="terminal-content">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2">Get In Touch</h1>
+                        <p class="text-terminal-green">Let's connect and build something amazing together</p>
+                    </div>
+                    <a href="/" class="btn text-terminal-cyan hover:text-terminal-green transition-colors">
+                        ← Back to Terminal
+                    </a>
+                </div>
+                
+                <!-- Terminal Breadcrumb -->
+                <div class="text-sm mb-4">
+                    <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                    <span class="text-white">./contact --open-communication-channel</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Contact Information -->
+            <div class="terminal-window animate-fade-in" style="animation-delay: 0.2s">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
+                    </div>
+                    <div class="terminal-title">contact_info.json</div>
+                </div>
+                <div class="terminal-content">
+                    <h3 class="text-xl font-bold text-white mb-6">Contact Information</h3>
+                    
+                    <!-- Contact Methods -->
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-terminal-green bg-opacity-10 rounded border border-terminal-green">
+                            <div class="w-12 h-12 bg-terminal-green rounded-full flex items-center justify-center mr-4">
+                                <span class="text-2xl">📧</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Email</h4>
+                                <a href="mailto:{{ personal_info.email }}" class="text-terminal-cyan hover:text-terminal-green transition-colors">
+                                    {{ personal_info.email }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center p-4 bg-terminal-cyan bg-opacity-10 rounded border border-terminal-cyan">
+                            <div class="w-12 h-12 bg-terminal-cyan rounded-full flex items-center justify-center mr-4">
+                                <span class="text-2xl">📱</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">Phone</h4>
+                                <a href="tel:{{ personal_info.phone }}" class="text-terminal-cyan hover:text-terminal-green transition-colors">
+                                    {{ personal_info.phone }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center p-4 bg-terminal-yellow bg-opacity-10 rounded border border-terminal-yellow">
+                            <div class="w-12 h-12 bg-terminal-yellow rounded-full flex items-center justify-center mr-4">
+                                <span class="text-2xl">🔗</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">GitHub</h4>
+                                <a href="{{ personal_info.github }}" target="_blank" class="text-terminal-cyan hover:text-terminal-green transition-colors">
+                                    {{ personal_info.github }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center p-4 bg-terminal-blue bg-opacity-10 rounded border border-terminal-blue">
+                            <div class="w-12 h-12 bg-terminal-blue rounded-full flex items-center justify-center mr-4">
+                                <span class="text-2xl">💼</span>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold">LinkedIn</h4>
+                                <a href="{{ personal_info.linkedin }}" target="_blank" class="text-terminal-cyan hover:text-terminal-green transition-colors">
+                                    LinkedIn Profile
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Response Time -->
+                    <div class="mt-6 p-4 bg-terminal-green bg-opacity-5 rounded border border-terminal-green">
+                        <h4 class="text-white font-semibold mb-2">Response Time</h4>
+                        <p class="text-gray-300 text-sm">
+                            I typically respond within 24 hours. For urgent matters, please call or send an email with "URGENT" in the subject line.
+                        </p>
+                    </div>
+
+                    <!-- Availability -->
+                    <div class="mt-4 p-4 bg-terminal-cyan bg-opacity-5 rounded border border-terminal-cyan">
+                        <h4 class="text-white font-semibold mb-2">Availability</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Monday - Friday:</span>
+                                <span class="text-terminal-green">9:00 AM - 6:00 PM (IST)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Weekend:</span>
+                                <span class="text-terminal-yellow">Limited availability</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="terminal-window animate-fade-in" style="animation-delay: 0.4s">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
+                    </div>
+                    <div class="terminal-title">send_message.py</div>
+                </div>
+                <div class="terminal-content">
+                    <h3 class="text-xl font-bold text-white mb-6">Send Message</h3>
+                    
+                    <form id="contact-form" class="space-y-4">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <select id="subject" name="subject" class="form-input" required>
+                                <option value="">Select a subject...</option>
+                                <option value="collaboration">Collaboration Opportunity</option>
+                                <option value="job">Job Opportunity</option>
+                                <option value="project">Project Inquiry</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-input form-textarea" rows="6" required placeholder="Tell me about your project, opportunity, or question..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn w-full">
+                            <span id="submit-text">Send Message</span>
+                            <span id="loading" class="loading hidden"></span>
+                        </button>
+                    </form>
+
+                    <!-- Success/Error Messages -->
+                    <div id="form-message" class="mt-4 p-4 rounded border hidden"></div>
+
+                    <!-- Terminal Output -->
+                    <div class="mt-6 p-4 bg-terminal-bg bg-opacity-50 rounded border border-terminal-green">
+                        <div class="text-terminal-green text-sm">
+                            <span class="terminal-prompt">python send_message.py --to utkarsh</span>
+                        </div>
+                        <div class="text-gray-300 text-sm mt-2">
+                            Ready to send your message...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Info -->
+        <div class="terminal-window mt-8 animate-fade-in" style="animation-delay: 0.6s">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">collaboration.txt</div>
+            </div>
+            <div class="terminal-content">
+                <h3 class="text-xl font-bold text-white mb-4">Let's Collaborate!</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">💡</div>
+                        <h4 class="text-white font-semibold mb-2">Project Ideas</h4>
+                        <p class="text-gray-300 text-sm">
+                            Have an interesting project in mind? Let's discuss how we can bring it to life with AI and modern technology.
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🤝</div>
+                        <h4 class="text-white font-semibold mb-2">Partnerships</h4>
+                        <p class="text-gray-300 text-sm">
+                            Looking for technical partnerships or collaborations? I'm always open to working with like-minded individuals and teams.
+                        </p>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🚀</div>
+                        <h4 class="text-white font-semibold mb-2">Opportunities</h4>
+                        <p class="text-gray-300 text-sm">
+                            Interested in full-time, part-time, or freelance opportunities? I'm currently open to new challenges and roles.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <p class="text-terminal-green">
+                        <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                        <span class="text-white">echo "Looking forward to hearing from you!"</span>
+                    </p>
+                    <p class="text-terminal-green mt-2">Looking forward to hearing from you! 🌟</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const submitText = document.getElementById('submit-text');
+    const loading = document.getElementById('loading');
+    const formMessage = document.getElementById('form-message');
+
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        submitButton.disabled = true;
+        submitText.textContent = 'Sending...';
+        loading.classList.remove('hidden');
+        formMessage.classList.add('hidden');
+
+        // Collect form data
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+
+        try {
+            // Send form data
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Show success message
+                formMessage.className = 'mt-4 p-4 rounded border border-terminal-green bg-terminal-green bg-opacity-10 text-terminal-green';
+                formMessage.textContent = result.message;
+                formMessage.classList.remove('hidden');
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Add success animation
+                formMessage.style.animation = 'fadeIn 0.5s ease-out';
+            } else {
+                throw new Error(result.message || 'Failed to send message');
+            }
+        } catch (error) {
+            // Show error message
+            formMessage.className = 'mt-4 p-4 rounded border border-terminal-red bg-terminal-red bg-opacity-10 text-terminal-red';
+            formMessage.textContent = 'Failed to send message. Please try again or contact me directly via email.';
+            formMessage.classList.remove('hidden');
+        } finally {
+            // Reset button state
+            submitButton.disabled = false;
+            submitText.textContent = 'Send Message';
+            loading.classList.add('hidden');
+        }
+    });
+
+    // Add real-time form validation
+    const inputs = contactForm.querySelectorAll('input, select, textarea');
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            validateField(this);
+        });
+        
+        input.addEventListener('input', function() {
+            if (this.classList.contains('error')) {
+                validateField(this);
+            }
+        });
+    });
+
+    function validateField(field) {
+        const isValid = field.checkValidity();
+        
+        if (isValid) {
+            field.classList.remove('error');
+            field.style.borderColor = 'var(--terminal-green)';
+        } else {
+            field.classList.add('error');
+            field.style.borderColor = 'var(--terminal-red)';
+        }
+    }
+
+    // Add typing animation to form labels
+    const labels = document.querySelectorAll('.form-label');
+    
+    labels.forEach((label, index) => {
+        setTimeout(() => {
+            label.style.opacity = '1';
+            label.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+
+    // Initialize label styles
+    labels.forEach(label => {
+        label.style.opacity = '0';
+        label.style.transform = 'translateY(-10px)';
+        label.style.transition = 'all 0.3s ease';
+    });
+
+    // Add hover effects to contact methods
+    const contactMethods = document.querySelectorAll('.flex.items-center.p-4');
+    
+    contactMethods.forEach(method => {
+        method.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(10px)';
+            this.style.boxShadow = '0 5px 15px rgba(0, 255, 0, 0.2)';
+        });
+        
+        method.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
+</script>
+{% endblock %}

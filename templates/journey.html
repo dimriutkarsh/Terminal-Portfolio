@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+
+{% block title %}Journey - {{ personal_info.name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen p-4 lg:p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <div class="terminal-window mb-8 animate-fade-in">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">career_journey.exe</div>
+            </div>
+            <div class="terminal-content">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2">Career Journey</h1>
+                        <p class="text-terminal-green">My professional development timeline</p>
+                    </div>
+                    <a href="/" class="btn text-terminal-cyan hover:text-terminal-green transition-colors">
+                        ← Back to Terminal
+                    </a>
+                </div>
+                
+                <!-- Terminal Breadcrumb -->
+                <div class="text-sm mb-4">
+                    <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                    <span class="text-white">git log --oneline --graph career.git</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="space-y-8">
+            {% for item in journey %}
+            <div class="flex items-start space-x-6 animate-fade-in" style="animation-delay: {{ (journey|length - loop.index) * 0.2 }}s">
+                <!-- Timeline Line -->
+                <div class="flex flex-col items-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-terminal-green to-terminal-cyan rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                        {{ item.year[-2:] }}
+                    </div>
+                    {% if not loop.last %}
+                    <div class="w-1 h-32 bg-gradient-to-b from-terminal-green to-terminal-cyan mt-4"></div>
+                    {% endif %}
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="terminal-buttons">
+                                <div class="terminal-button red"></div>
+                                <div class="terminal-button yellow"></div>
+                                <div class="terminal-button green"></div>
+                            </div>
+                            <div class="terminal-title">{{ item.year }}.log</div>
+                        </div>
+                        <div class="terminal-content">
+                            <!-- Job Details -->
+                            <div class="mb-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h3 class="text-xl font-bold text-white">{{ item.title }}</h3>
+                                    <span class="text-terminal-cyan text-sm">{{ item.year }}</span>
+                                </div>
+                                <p class="text-terminal-green font-semibold mb-2">{{ item.company }}</p>
+                                <p class="text-gray-300">{{ item.description }}</p>
+                            </div>
+
+                            <!-- Technologies -->
+                            <div class="mb-4">
+                                <h4 class="text-white font-semibold mb-2">Technologies Used:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    {% for tech in item.technologies %}
+                                    <span class="tech-tag">{{ tech }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Achievements -->
+                            <div class="mb-4">
+                                <h4 class="text-white font-semibold mb-2">Key Achievements:</h4>
+                                <ul class="text-gray-300 space-y-1">
+                                    {% for achievement in item.achievements %}
+                                    <li class="flex items-start">
+                                        <span class="text-terminal-green mr-2">▸</span>
+                                        {{ achievement }}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                            <!-- Terminal Output -->
+                            <div class="bg-terminal-bg bg-opacity-50 p-3 rounded border border-terminal-green">
+                                <div class="text-terminal-green text-sm">
+                                    <span class="terminal-prompt">git commit -m </span>
+                                    <span class="text-white">"{{ item.title }} completed successfully"</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Journey Summary -->
+        <div class="terminal-window mt-12 animate-fade-in" style="animation-delay: 1s">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">journey_summary.txt</div>
+            </div>
+            <div class="terminal-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Years of Experience -->
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-terminal-green mb-2">{{ journey|length }}+</div>
+                        <div class="text-gray-400">Years of Experience</div>
+                        <div class="text-terminal-cyan text-sm mt-1">And counting...</div>
+                    </div>
+
+                    <!-- Companies Worked -->
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-terminal-cyan mb-2">{{ journey|length }}</div>
+                        <div class="text-gray-400">Companies</div>
+                        <div class="text-terminal-green text-sm mt-1">Different industries</div>
+                    </div>
+
+                    <!-- Technologies Learned -->
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-terminal-yellow mb-2">20+</div>
+                        <div class="text-gray-400">Technologies</div>
+                        <div class="text-terminal-purple text-sm mt-1">Mastered</div>
+                    </div>
+                </div>
+
+                <!-- Growth Timeline -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">Growth Timeline</h3>
+                    <div class="flex justify-between items-center">
+                        {% for item in journey %}
+                        <div class="flex flex-col items-center">
+                            <div class="w-8 h-8 bg-terminal-green rounded-full flex items-center justify-center text-xs font-bold">
+                                {{ loop.index }}
+                            </div>
+                            <div class="text-terminal-green text-sm mt-1">{{ item.year }}</div>
+                            <div class="text-gray-400 text-xs mt-1 text-center max-w-20">{{ item.title.split()[0] }}</div>
+                        </div>
+                        {% if not loop.last %}
+                        <div class="flex-1 h-px bg-gradient-to-r from-terminal-green to-terminal-cyan mx-2"></div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Terminal Output -->
+                <div class="mt-8 text-center">
+                    <p class="text-terminal-green">
+                        <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                        <span class="text-white">echo "The journey continues..."</span>
+                    </p>
+                    <p class="text-terminal-green mt-2">The journey continues... 🚀</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add staggered animation to timeline items
+    const timelineItems = document.querySelectorAll('.flex.items-start.space-x-6');
+    
+    timelineItems.forEach((item, index) => {
+        setTimeout(() => {
+            item.classList.add('animate-slide-in-left');
+        }, index * 200);
+    });
+
+    // Add hover effects to timeline cards
+    const timelineCards = document.querySelectorAll('.terminal-window');
+    
+    timelineCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(10px) scale(1.02)';
+            this.style.boxShadow = '0 20px 40px rgba(0, 255, 0, 0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0) scale(1)';
+            this.style.boxShadow = '0 0 20px rgba(0, 255, 0, 0.3)';
+        });
+    });
+
+    // Add typing effect to achievements
+    const achievements = document.querySelectorAll('li');
+    
+    achievements.forEach((achievement, index) => {
+        setTimeout(() => {
+            achievement.style.opacity = '1';
+            achievement.style.transform = 'translateX(0)';
+        }, index * 100);
+    });
+
+    // Initialize achievement styles
+    achievements.forEach(achievement => {
+        achievement.style.opacity = '0';
+        achievement.style.transform = 'translateX(-20px)';
+        achievement.style.transition = 'all 0.3s ease';
+    });
+
+    // Add progress animation to growth timeline
+    const growthTimeline = document.querySelector('.flex.justify-between.items-center');
+    if (growthTimeline) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const lines = entry.target.querySelectorAll('.bg-gradient-to-r');
+                    lines.forEach((line, index) => {
+                        setTimeout(() => {
+                            line.style.width = '100%';
+                            line.style.opacity = '1';
+                        }, index * 300);
+                    });
+                }
+            });
+        });
+
+        observer.observe(growthTimeline);
+
+        // Initialize line styles
+        const lines = growthTimeline.querySelectorAll('.bg-gradient-to-r');
+        lines.forEach(line => {
+            line.style.width = '0%';
+            line.style.opacity = '0';
+            line.style.transition = 'all 0.5s ease';
+        });
+    }
+});
+</script>
+{% endblock %}

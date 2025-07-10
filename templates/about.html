@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block title %}About - {{ personal_info.name }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen p-4 lg:p-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="terminal-window mb-8 animate-fade-in">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">about.exe</div>
+            </div>
+            <div class="terminal-content">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2 animate-typewriter">About Me</h1>
+                        <p class="text-terminal-green">Learn more about my journey and passion</p>
+                    </div>
+                    <a href="/" class="btn text-terminal-cyan hover:text-terminal-green transition-colors">
+                        ← Back to Terminal
+                    </a>
+                </div>
+                
+                <!-- Terminal Breadcrumb -->
+                <div class="text-sm mb-4">
+                    <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                    <span class="text-white animate-typewriter">cat about.txt</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column - Story -->
+            <div class="lg:col-span-2 space-y-8">
+                <div class="terminal-window animate-fade-in" style="animation-delay: 0.2s">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <div class="terminal-button red"></div>
+                            <div class="terminal-button yellow"></div>
+                            <div class="terminal-button green"></div>
+                        </div>
+                        <div class="terminal-title">my_story.txt</div>
+                    </div>
+                    <div class="terminal-content">
+                        <h2 class="text-2xl font-bold text-white mb-4 flex items-center">
+                            <span class="mr-2">⚡</span>
+                            My Journey
+                        </h2>
+                        <div class="space-y-4 text-gray-300">
+                            <p class="animate-typewriter">{{ personal_info.bio }}</p>
+                            <p>
+                                I believe in the power of AI to transform how we work and create. Whether it's automating 
+                                repetitive tasks, optimizing workflows, or crafting beautiful, efficient solutions, I'm 
+                                constantly exploring how AI can enhance productivity and design.
+                            </p>
+                            <p>
+                                My portfolio reflects my evolution as a self-driven developer, from basic websites to 
+                                full-stack applications, all while maintaining a focus on clean, functional design and 
+                                smart implementation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="terminal-window animate-fade-in" style="animation-delay: 0.4s">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <div class="terminal-button red"></div>
+                            <div class="terminal-button yellow"></div>
+                            <div class="terminal-button green"></div>
+                        </div>
+                        <div class="terminal-title">timeline.log</div>
+                    </div>
+                    <div class="terminal-content">
+                        <h2 class="text-2xl font-bold text-white mb-6">Learning Timeline</h2>
+                        <div class="space-y-6">
+                            {% for item in journey %}
+                            <div class="flex items-start space-x-4 animate-fade-in" style="animation-delay: {{ loop.index * 0.1 }}s">
+                                <div class="bg-gradient-to-r from-terminal-green to-terminal-cyan p-3 rounded-full text-white">
+                                    <span class="text-sm font-bold">{{ item.year[-2:] }}</span>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center mb-2">
+                                        <span class="text-terminal-green font-bold text-lg">{{ item.year }}</span>
+                                        <span class="text-white font-semibold ml-3">{{ item.title }}</span>
+                                    </div>
+                                    <p class="text-gray-300 text-sm mb-2">{{ item.description }}</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        {% for tech in item.technologies %}
+                                        <span class="tech-tag">{{ tech }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Stats & Interests -->
+            <div class="space-y-6">
+                <!-- Stats -->
+                <div class="terminal-window animate-fade-in" style="animation-delay: 0.6s">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <div class="terminal-button red"></div>
+                            <div class="terminal-button yellow"></div>
+                            <div class="terminal-button green"></div>
+                        </div>
+                        <div class="terminal-title">stats.json</div>
+                    </div>
+                    <div class="terminal-content">
+                        <h3 class="text-xl font-bold text-white mb-4">Quick Stats</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Experience</span>
+                                <span class="text-terminal-green">{{ personal_info.experience }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Projects</span>
+                                <span class="text-terminal-green">{{ personal_info.projects_count }}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Technologies</span>
+                                <span class="text-terminal-green">20+</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Coffee Cups</span>
+                                <span class="text-terminal-green">{{ personal_info.coffee_consumed }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interests -->
+                <div class="terminal-window animate-fade-in" style="animation-delay: 0.8s">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <div class="terminal-button red"></div>
+                            <div class="terminal-button yellow"></div>
+                            <div class="terminal-button green"></div>
+                        </div>
+                        <div class="terminal-title">interests.txt</div>
+                    </div>
+                    <div class="terminal-content">
+                        <h3 class="text-xl font-bold text-white mb-4">Interests</h3>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="text-center p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                                <div class="text-2xl mb-1">🤖</div>
+                                <div class="text-sm text-gray-300">AI/ML</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                                <div class="text-2xl mb-1">🧠</div>
+                                <div class="text-sm text-gray-300">Deep Learning</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                                <div class="text-2xl mb-1">📊</div>
+                                <div class="text-sm text-gray-300">Data Science</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                                <div class="text-2xl mb-1">🌐</div>
+                                <div class="text-sm text-gray-300">Web Dev</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                                <div class="text-2xl mb-1">⚡</div>
+                                <div class="text-sm text-gray-300">Automation</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                                <div class="text-2xl mb-1">🎨</div>
+                                <div class="text-sm text-gray-300">UI/UX</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fun Facts -->
+                <div class="terminal-window animate-fade-in" style="animation-delay: 1s">
+                    <div class="terminal-header">
+                        <div class="terminal-buttons">
+                            <div class="terminal-button red"></div>
+                            <div class="terminal-button yellow"></div>
+                            <div class="terminal-button green"></div>
+                        </div>
+                        <div class="terminal-title">fun_facts.txt</div>
+                    </div>
+                    <div class="terminal-content">
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                            <span class="mr-2">💡</span>
+                            Fun Facts
+                        </h3>
+                        <div class="space-y-3 text-sm text-gray-300">
+                            <div>• I debug better with coffee ☕</div>
+                            <div>• Always learning new technologies</div>
+                            <div>• Love solving complex problems</div>
+                            <div>• Believes in clean, efficient code</div>
+                            <div>• Passionate about AI ethics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminal-style footer -->
+        <div class="terminal-window mt-8 animate-fade-in" style="animation-delay: 1.2s">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <div class="terminal-title">output.log</div>
+            </div>
+            <div class="terminal-content">
+                <div class="text-center">
+                    <p class="text-terminal-green">
+                        <span class="terminal-prompt">utkarsh@portfolio:~$ </span>
+                        <span class="text-white">echo "Thanks for reading about me!"</span>
+                    </p>
+                    <p class="text-terminal-green mt-2 animate-typewriter">Thanks for reading about me! 🌟</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

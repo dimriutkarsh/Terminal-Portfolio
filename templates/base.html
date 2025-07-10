@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Utkarsh Dimri - AI/ML Engineer{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'mono': ['Fira Code', 'JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        'terminal-bg': '#0a0a0a',
+                        'terminal-green': '#00ff00',
+                        'terminal-cyan': '#00ffff',
+                        'terminal-yellow': '#ffff00',
+                        'terminal-red': '#ff0000',
+                        'terminal-blue': '#0080ff',
+                        'terminal-purple': '#ff00ff',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Utkarsh Dimri - AI/ML Engineer Portfolio. Passionate about building intelligent systems and full-stack development.">
+    <meta name="keywords" content="AI, ML, Machine Learning, Python, JavaScript, Full Stack Developer, Portfolio">
+    <meta name="author" content="Utkarsh Dimri">
+    <meta property="og:title" content="Utkarsh Dimri - AI/ML Engineer">
+    <meta property="og:description" content="Passionate AI/ML engineer with expertise in full-stack development">
+    <meta property="og:type" content="website">
+    
+    {% block styles %}{% endblock %}
+</head>
+<body class="bg-terminal-bg text-terminal-green font-mono">
+    <!-- Background Matrix Effect -->
+    <div class="matrix-rain"></div>
+    
+    <!-- Main Content -->
+    <main class="relative z-10">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
