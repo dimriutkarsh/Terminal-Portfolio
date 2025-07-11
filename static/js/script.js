@@ -5,6 +5,8 @@ class TerminalPortfolio {
         this.commandHistory = [];
         this.historyIndex = -1;
         this.isTyping = false;
+        this.particleCount = 0;
+        this.maxParticles = 50;
         this.init();
     }
 
@@ -13,6 +15,8 @@ class TerminalPortfolio {
         this.createMatrixRain();
         this.startBootSequence();
         this.setupAnimations();
+        this.initializeParticleSystem();
+        this.setupAdvancedEffects();
     }
 
     setupEventListeners() {
@@ -36,7 +40,7 @@ class TerminalPortfolio {
                 this.handleKeyDown(e);
             });
 
-            // Keep terminal focused
+            // Keep terminal focused with enhanced interaction
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('a') && !e.target.closest('button') && !e.target.closest('.profile-card')) {
                     terminalInput.focus();
@@ -44,20 +48,12 @@ class TerminalPortfolio {
             });
         }
 
-        // Setup profile card interactions
-        const profileCard = document.getElementById('profile-card');
-        if (profileCard) {
-            profileCard.addEventListener('click', () => {
-                this.toggleProfileCard();
-            });
-        }
-
-        // Setup profile title click
+        // Profile title click
         const profileTitle = document.querySelector('.profile-title');
         if (profileTitle) {
             profileTitle.addEventListener('click', (e) => {
                 e.stopPropagation();
-                window.location.href = '/about';
+                this.animatePageTransition('/about');
             });
         }
     }
@@ -95,7 +91,7 @@ class TerminalPortfolio {
             if (matches.length === 1) {
                 input.value = matches[0];
             } else if (matches.length > 1) {
-                this.displayOutput(`\nPossible commands: ${matches.join(', ')}\n`);
+                this.displayOutput(`\n<span class="text-cyan">Possible commands:</span> ${matches.join(', ')}\n`);
             }
         }
     }
@@ -105,7 +101,7 @@ class TerminalPortfolio {
         this.historyIndex = -1;
         this.isTyping = true;
 
-        // Display command with typewriter effect
+        // Display command
         this.displayCommandWithTypewriter(command);
 
         // Process command via API
@@ -148,32 +144,35 @@ class TerminalPortfolio {
         const terminalContent = document.getElementById('terminal-content');
 
         if (data.output === 'CLEAR_TERMINAL') {
-            terminalContent.innerHTML = '';
-            this.displayWelcomeMessage();
+            this.animateTerminalClear();
+            setTimeout(() => {
+                terminalContent.innerHTML = '';
+                this.displayWelcomeMessage();
+            }, 300);
             return;
         }
 
         const outputDiv = document.createElement('div');
-        outputDiv.className = 'command-output animate-fade-in';
+        outputDiv.className = 'command-output';
 
         if (data.redirect) {
-            outputDiv.innerHTML = `<div class="success-output typewriter-output">${data.output}</div>`;
+            outputDiv.innerHTML = `<div class="success-output">${data.output}</div>`;
             terminalContent.appendChild(outputDiv);
             this.scrollToBottom();
             
-            // Show loading animation
+            // Loading animation
             setTimeout(() => {
                 this.showLoadingAnimation();
             }, 1000);
             
             setTimeout(() => {
-                window.location.href = data.redirect;
+                this.animatePageTransition(data.redirect);
             }, 2000);
         } else if (typeof data.output === 'object') {
             outputDiv.innerHTML = this.formatObjectOutput(data.output);
             terminalContent.appendChild(outputDiv);
         } else {
-            outputDiv.innerHTML = `<div class="terminal-output typewriter-output">${data.output}</div>`;
+            outputDiv.innerHTML = `<div class="terminal-output">${data.output}</div>`;
             terminalContent.appendChild(outputDiv);
         }
 
@@ -196,13 +195,13 @@ class TerminalPortfolio {
     }
 
     formatHelpOutput(commands) {
-        let html = '<div class="terminal-output"><div class="text-cyan mb-3">Available Commands:</div>';
-        html += '<div class="grid grid-cols-2 gap-2">';
+        let html = '<div class="terminal-output"><div class="text-cyan mb-3 glow-text">Available Commands:</div>';
+        html += '<div class="grid grid-cols-1 md:grid-cols-2 gap-3">';
         
         for (const [cmd, desc] of Object.entries(commands)) {
             html += `
-                <div class="flex">
-                    <span class="text-yellow font-semibold w-16">${cmd}</span>
+                <div class="flex items-center p-2 rounded">
+                    <span class="text-yellow font-semibold w-20 glow-text">${cmd}</span>
                     <span class="text-gray-300 ml-2">${desc}</span>
                 </div>
             `;
@@ -215,7 +214,7 @@ class TerminalPortfolio {
     formatLsOutput(sections) {
         return `
             <div class="terminal-output">
-                <div class="text-cyan mb-2">Directory contents:</div>
+                <div class="text-cyan mb-3 glow-text">Directory contents:</div>
                 <div class="file-tree">
                     ${sections.map(section => {
                         const isDirectory = section.endsWith('/');
@@ -241,8 +240,8 @@ class TerminalPortfolio {
     formatFileOutput(filename, content) {
         return `
             <div class="terminal-output">
-                <div class="text-cyan mb-2">📄 ${filename}</div>
-                <div class="bg-gray-900 p-4 rounded border-l-4 border-green-400">
+                <div class="text-cyan mb-3 glow-text">📄 ${filename}</div>
+                <div class="bg-gray-900 p-4 rounded-lg border-l-4 border-green-400">
                     <pre class="text-gray-300 whitespace-pre-wrap">${content}</pre>
                 </div>
             </div>
@@ -252,8 +251,8 @@ class TerminalPortfolio {
     displayError(message) {
         const terminalContent = document.getElementById('terminal-content');
         const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-output animate-fade-in';
-        errorDiv.innerHTML = `<div class="text-red typewriter-output">Error: ${message}</div>`;
+        errorDiv.className = 'error-output';
+        errorDiv.innerHTML = `<div class="text-red">⚠️ Error: ${message}</div>`;
         terminalContent.appendChild(errorDiv);
         this.scrollToBottom();
     }
@@ -261,7 +260,7 @@ class TerminalPortfolio {
     displayOutput(message) {
         const terminalContent = document.getElementById('terminal-content');
         const outputDiv = document.createElement('div');
-        outputDiv.className = 'terminal-output animate-fade-in';
+        outputDiv.className = 'terminal-output';
         outputDiv.innerHTML = message;
         terminalContent.appendChild(outputDiv);
         this.scrollToBottom();
@@ -270,7 +269,7 @@ class TerminalPortfolio {
     showLoadingAnimation() {
         const terminalContent = document.getElementById('terminal-content');
         const loadingDiv = document.createElement('div');
-        loadingDiv.className = 'terminal-output animate-fade-in';
+        loadingDiv.className = 'terminal-output';
         loadingDiv.innerHTML = `
             <div class="flex items-center">
                 <div class="loading mr-2"></div>
@@ -279,6 +278,10 @@ class TerminalPortfolio {
         `;
         terminalContent.appendChild(loadingDiv);
         this.scrollToBottom();
+    }
+
+    animatePageTransition(url) {
+        window.location.href = url;
     }
 
     scrollToBottom() {
@@ -292,30 +295,32 @@ class TerminalPortfolio {
         const profileCard = document.getElementById('profile-card');
         if (profileCard) {
             profileCard.classList.toggle('expanded');
+            this.createToggleParticles();
         }
     }
 
     startBootSequence() {
         const terminalContent = document.getElementById('terminal-content');
         if (terminalContent) {
-            this.displayWelcomeMessage();
+            this.displayEnhancedWelcomeMessage();
         }
     }
 
-    displayWelcomeMessage() {
+    displayEnhancedWelcomeMessage() {
         const welcomeMessage = `
-            <div class="animate-typewriter">
-                <div class="text-green-400 mb-4">
+            <div>
+                <div class="text-green-400 mb-4 glow-text">
                     ╔═══════════════════════════════════════════════════════════════════════════════╗
-                    ║                        Welcome to Terminal Portfolio v2.0                     ║
+                    ║                     🚀 Welcome to Terminal Portfolio v2.0 🚀                 ║
                     ║                               Utkarsh Dimri                                  ║
                     ║                            AI/ML Engineer                                    ║
                     ╚═══════════════════════════════════════════════════════════════════════════════╝
                 </div>
                 <div class="text-cyan mb-2">System initialized successfully...</div>
-                <div class="text-yellow mb-2">Type 'help' to see available commands</div>
-                <div class="text-gray-400 mb-4">Use TAB for command completion, UP/DOWN arrows for history</div>
-                <div class="text-green-400">Ready for input.</div>
+                <div class="text-yellow mb-2">Loading modules...</div>
+                <div class="text-purple mb-2">AI/ML framework loaded ✓</div>
+                <div class="text-green-400 mb-2">Portfolio system ready ✓</div>
+                <div class="text-gray-400 mb-4">Type 'help' to see available commands</div>
             </div>
         `;
         
@@ -325,37 +330,12 @@ class TerminalPortfolio {
         }
     }
 
+    displayWelcomeMessage() {
+        this.displayEnhancedWelcomeMessage();
+    }
+
     setupAnimations() {
-        // Setup intersection observer for animations
-        const animatedElements = document.querySelectorAll('.animate-on-scroll');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in');
-                }
-            });
-        });
-
-        animatedElements.forEach(element => {
-            observer.observe(element);
-        });
-
-        // Setup skill bar animations
-        const skillBars = document.querySelectorAll('.skill-progress-fill');
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const width = entry.target.getAttribute('data-width');
-                    if (width) {
-                        entry.target.style.width = width + '%';
-                    }
-                }
-            });
-        });
-
-        skillBars.forEach(bar => {
-            skillObserver.observe(bar);
-        });
+        // Minimal animations setup
     }
 
     createMatrixRain() {
@@ -380,7 +360,7 @@ class TerminalPortfolio {
         const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()_+-=[]{}|;:,.<>?";
         const matrixArray = matrix.split("");
         
-        const fontSize = 10;
+        const fontSize = 12;
         const columns = canvas.width / fontSize;
         
         const drops = [];
@@ -392,12 +372,25 @@ class TerminalPortfolio {
             ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            ctx.fillStyle = '#00ff00';
+            // Create gradient effect
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#00ff00');
+            gradient.addColorStop(0.5, '#00cc00');
+            gradient.addColorStop(1, '#008800');
+            
+            ctx.fillStyle = gradient;
             ctx.font = fontSize + 'px monospace';
             
             for (let i = 0; i < drops.length; i++) {
                 const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                
+                // Add glow effect
+                ctx.shadowColor = '#00ff00';
+                ctx.shadowBlur = 10;
+                ctx.fillText(text, x, y);
+                ctx.shadowBlur = 0;
                 
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
@@ -408,27 +401,11 @@ class TerminalPortfolio {
         
         setInterval(draw, 35);
         
-        // Resize handler
+        // Enhanced resize handler
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
-    }
-
-    // Utility functions
-    typeWriter(element, text, speed = 50) {
-        let i = 0;
-        element.innerHTML = '';
-        
-        const type = () => {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, speed);
-            }
-        };
-        
-        type();
     }
 
     formatDate(date) {
@@ -446,10 +423,11 @@ class TerminalPortfolio {
     }
 }
 
-// Initialize the terminal portfolio when DOM is loaded
+// Initialize enhanced terminal portfolio
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize terminal portfolio
     window.terminalPortfolio = new TerminalPortfolio();
 });
 
-// Export for use in other scripts
+// Export enhanced class
 window.TerminalPortfolio = TerminalPortfolio;
