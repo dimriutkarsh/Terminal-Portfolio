@@ -12,183 +12,257 @@ PORTFOLIO_DATA = {
         "name": "Utkarsh Dimri",
         "title": "AI/ML Engineer",
         "location": "India",
-        "email": "utkarsh@example.com",
-        "phone": "+91 XXXXX XXXXX",
-        "github": "https://github.com/utkarsh",
-        "linkedin": "https://linkedin.com/in/utkarsh",
+        "email": "dimriutkarsh55@gmail.com",
+        "phone": "+91 XXXXX X6262",
+        "github": "https://github.com/dimriutkarsh",
+        "linkedin": "https://www.linkedin.com/in/utkarsh-dimri-029672242/",
         "avatar": "UD",
         "bio": "Passionate AI/ML engineer with a strong foundation in full-stack development. I love building intelligent systems that solve real-world problems and constantly exploring new technologies to enhance productivity and innovation.",
         "status": "Available for opportunities",
-        "experience": "3+ Years",
+        "experience": "1 Year",
         "projects_count": "15+",
         "coffee_consumed": "∞"
     },
     "skills": {
-        "programming_languages": [
-            {"name": "Python", "level": 90, "icon": "🐍"},
-            {"name": "JavaScript", "level": 85, "icon": "🟨"},
-            {"name": "TypeScript", "level": 80, "icon": "🔵"},
-            {"name": "HTML/CSS", "level": 95, "icon": "🌐"},
-            {"name": "SQL", "level": 75, "icon": "🗄️"}
-        ],
-        "frameworks": [
-            {"name": "React", "level": 85, "icon": "⚛️"},
-            {"name": "Django", "level": 90, "icon": "🎯"},
-            {"name": "Flask", "level": 85, "icon": "🌶️"},
-            {"name": "Node.js", "level": 75, "icon": "🟢"},
-            {"name": "TailwindCSS", "level": 90, "icon": "🎨"}
-        ],
-        "ai_ml": [
-            {"name": "TensorFlow", "level": 70, "icon": "🧠"},
-            {"name": "PyTorch", "level": 65, "icon": "🔥"},
-            {"name": "Scikit-learn", "level": 75, "icon": "📊"},
-            {"name": "NumPy", "level": 80, "icon": "🔢"},
-            {"name": "Pandas", "level": 75, "icon": "🐼"}
-        ],
+       "frontend": [
+      { "name": "HTML5", "level": 90, "icon": "🌐" },
+      { "name": "CSS3", "level": 65, "icon": "🎨" },
+      { "name": "JavaScript", "level": 50, "icon": "⚡" },
+      { "name": "Responsive Design", "level": 88, "icon": "📱" }
+    ],
+    "backend": [
+      { "name": "Python", "level": 88, "icon": "🐍" },
+      { "name": "Django", "level": 45, "icon": "🎯" },
+      { "name": "Flask", "level": 55, "icon": "🔥" },
+      { "name": "Database Design", "level": 75, "icon": "🗄️" }
+    ],
+    "ai_ml_programming": [
+      { "name": "C Programming", "level": 75, "icon": "💻" },
+      { "name": "NumPy", "level": 70, "icon": "🔢" },
+      { "name": "AI Tools Integration", "level": 85, "icon": "🤖" },
+      { "name": "Data Analysis", "level": 65, "icon": "📊" }
+    ],
         "tools": [
-            {"name": "Git", "level": 85, "icon": "🔧"},
-            {"name": "Docker", "level": 70, "icon": "🐳"},
-            {"name": "AWS", "level": 65, "icon": "☁️"},
-            {"name": "PostgreSQL", "level": 80, "icon": "🐘"},
-            {"name": "MongoDB", "level": 75, "icon": "🍃"}
+            {"name": "Git", "level": 65, "icon": "🔧"},
+            {"name": "AI-Tools", "level": 75, "icon": "🐼"},
+            {"name": "NO-code/Low-code", "level": 75, "icon": "🍃"},
+            # {"name": "Docker", "level": 70, "icon": "🐳"},
+            # {"name": "AWS", "level": 65, "icon": "☁️"},
+            # {"name": "PostgreSQL", "level": 80, "icon": "🐘"},
+            # {"name": "MongoDB", "level": 75, "icon": "🍃"}
         ]
     },
     "projects": [
+        
         {
-            "id": 1,
-            "title": "AI-Powered Task Automation",
-            "description": "Developed an intelligent task automation system using Python and machine learning algorithms to optimize workflow efficiency by 60%.",
-            "technologies": ["Python", "TensorFlow", "Flask", "NumPy", "Pandas"],
-            "github": "https://github.com/utkarsh/ai-task-automation",
-            "demo": "https://ai-automation-demo.com",
-            "category": "AI/ML",
-            "status": "Completed",
-            "year": "2023",
-            "features": [
-                "Automated workflow optimization",
-                "Machine learning predictions",
-                "Real-time analytics dashboard",
-                "API integration"
+      "id": 1,
+      "title": "VanRakshak",
+      "description": "A group project to detect forest fires using thermal mapping and Google Maps integration.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "API Integration"],
+      "github": "https://github.com/dimriutkarsh/VanRakshak",
+      "demo": "https://dimriutkarsh.github.io/VanRakshak/",
+      "category": "Frontend",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Detects forest fires through thermal mapping",
+        "Uses Google Maps model",
+        "Can be used for promoting plantation drives"
             ]
         },
         {
-            "id": 2,
-            "title": "Full-Stack Web Application",
-            "description": "Built a comprehensive web application with user authentication, real-time data processing, and responsive design serving 1000+ users.",
-            "technologies": ["React", "Node.js", "PostgreSQL", "Socket.io", "JWT"],
-            "github": "https://github.com/utkarsh/fullstack-app",
-            "demo": "https://fullstack-demo.com",
-            "category": "Web Development",
-            "status": "Completed",
-            "year": "2023",
-            "features": [
-                "User authentication system",
-                "Real-time notifications",
-                "Responsive design",
-                "API rate limiting"
+      "id": 2,
+      "title": "Interactive Portfolio Website",
+      "description": "A responsive portfolio website with animations, modern UI/UX, and interactive components.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+      "github": "https://github.com/dimriutkarsh/Personal-Portfolio",
+      "demo": "http://personal-portfolio-production-cf5e.up.railway.app",
+      "category": "Frontend",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Responsive design with CSS Grid and Flexbox",
+        "Smooth scrolling and animations",
+        "Interactive JavaScript components",
+        "Modern UI/UX design principles"
             ]
         },
         {
-            "id": 3,
-            "title": "Data Analysis Dashboard",
-            "description": "Created an interactive dashboard for data visualization and analysis using advanced Python libraries processing 10GB+ daily data.",
-            "technologies": ["Python", "Pandas", "Plotly", "Django", "Redis"],
-            "github": "https://github.com/utkarsh/data-dashboard",
-            "demo": "https://data-dashboard-demo.com",
-            "category": "Data Science",
-            "status": "Completed",
-            "year": "2022",
-            "features": [
-                "Interactive data visualization",
-                "Real-time data processing",
-                "Export functionality",
-                "Multi-user support"
+      "id": 3,
+      "title": "NotesNest",
+      "description": "A web app for students to access notes, formulas, and extract text from images using AI.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "OCR"],
+      "github": "https://github.com/dimriutkarsh/NotesNest",
+      "demo": "https://dimriutkarsh.github.io/NotesNest/",
+      "category": "Frontend",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Search notes and formulas instantly",
+        "Voice input support",
+        "Extract text from images with Tesseract.js",
+        "AI API integration for fetching notes",
+        "Clean, responsive web design"
             ]
         },
         {
-            "id": 4,
-            "title": "Smart Recommendation Engine",
-            "description": "Built a machine learning recommendation system with collaborative filtering achieving 85% accuracy rate.",
-            "technologies": ["Python", "Scikit-learn", "FastAPI", "Docker", "Redis"],
-            "github": "https://github.com/utkarsh/recommendation-engine",
-            "demo": "https://recommendation-demo.com",
-            "category": "AI/ML",
-            "status": "In Progress",
-            "year": "2024",
-            "features": [
-                "Collaborative filtering",
-                "Content-based recommendations",
-                "A/B testing framework",
-                "Scalable architecture"
+      "id": 4,
+      "title": "Image-generating Chatbot",
+      "description": "A chatbot that generates unique AI images from user descriptions.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "API Integration"],
+      "github": "https://github.com/dimriutkarsh/image-generation-chatbot",
+      "demo": "https://dimriutkarsh.github.io/image-generation-chatbot/",
+      "category": "Frontend",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "AI-powered image generation",
+        "Create visuals based on user imagination"
+
             ]
         },
         {
-            "id": 5,
-            "title": "Terminal Portfolio Website",
-            "description": "Developed this interactive terminal-based portfolio with animations and responsive design.",
-            "technologies": ["Flask", "JavaScript", "TailwindCSS", "HTML5"],
-            "github": "https://github.com/utkarsh/terminal-portfolio",
-            "demo": "https://utkarsh-portfolio.com",
-            "category": "Web Development",
-            "status": "Completed",
-            "year": "2024",
-            "features": [
-                "Terminal interface",
-                "Command-line navigation",
-                "Animated elements",
-                "Responsive design"
+      "id": 5,
+      "title": "DeepShiva Chatbot",
+      "description": "An AI chatbot with multilingual support and real-time intelligent responses.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "API Integration"],
+      "github": "https://github.com/dimriutkarsh/DeepShiva",
+      "demo": "https://dimriutkarsh.github.io/DeepShiva/",
+      "category": "Frontend",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Voice recognition support",
+        "Multilingual responses",
+        "Real-time search functionality",
+        "Dark mode interface"
             ]
-        }
+        },
+            {
+      "id": 6,
+      "title": "Edu-Hub",
+      "description": "An academic platform providing access to question papers, assignments, and notes.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "API Integration"],
+      "github": "https://github.com/dimriutkarsh/EduHub",
+      "demo": "https://dimriutkarsh.github.io/EduHub/",
+      "category": "Frontend",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Previous year question papers",
+        "Assignments upload",
+        "Regular and short notes access"
+      ]
+    },
+        {
+      "id": 7,
+      "title": "AI-Powered Task Management System",
+      "description": "Task management app with AI task prioritization and user authentication built using Django.",
+      "technologies": ["Django", "Python", "SQLite", "AI Integration"],
+      "github": "#",
+      "demo": "#",
+      "category": "Full-Stack",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "User authentication and authorization",
+        "AI-powered task prioritization",
+        "Real-time notifications",
+        "Advanced filtering and search"
+      ]
+    },
+        {
+      "id": 8,
+      "title": "Personal Blog Platform",
+      "description": "A Django-based blog with SEO, comment system, and admin dashboard.",
+      "technologies": ["Django", "Python", "PostgreSQL", "SEO"],
+      "github": "#",
+      "demo": "#",
+      "category": "Full-Stack",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Rich text editor",
+        "Comment moderation",
+        "SEO-friendly URLs",
+        "Admin content management"
+      ]
+    },
+        {
+      "id": 9,
+      "title": "VidSnap AI",
+      "description": "A Flask web app to generate video reels from images and text with TTS integration.",
+      "technologies": ["Flask", "Python", "CSS", "HTML", "JavaScript"],
+      "github": "https://github.com/dimriutkarsh/VidSnap",
+      "demo": "",
+      "category": "Backend",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Create video reels from images and text",
+        "Text-to-speech integration using ElevenLabs API",
+        "Simple and creative interface"
+      ]
+    },
+        {
+      "id": 10,
+      "title": "YogFit",
+      "description": "An exercise info app providing workout suggestions and fitness tracking.",
+      "technologies": ["CSS", "HTML", "JavaScript"],
+      "github": "https://github.com/dimriutkarsh/ExerciseInfo",
+      "demo": "https://dimriutkarsh.github.io/ExerciseInfo/",
+      "category": "Frontend",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Exercise information by category",
+        "Daily exercise schedules",
+        "Fitness record tracking"
+      ]
+    },
+        {
+      "id": 11,
+      "title": "Interactive Analytics Dashboard",
+      "description": "Real-time analytics dashboard with interactive charts and data export features.",
+      "technologies": ["Flask", "Chart.js", "Python", "Analytics"],
+      "github": "#",
+      "demo": "#",
+      "category": "Full-Stack",
+      "status": "Completed",
+      "year": "2024",
+      "features": [
+        "Real-time data visualization",
+        "Interactive charts and graphs",
+        "Data filtering and export",
+        "Responsive dashboard design"
+      ]
+    }
     ],
     "journey": [
-        {
-            "year": "2024",
-            "title": "Senior AI/ML Engineer",
-            "company": "Tech Innovation Corp",
-            "description": "Leading AI initiatives and building intelligent systems for enterprise clients",
-            "technologies": ["Python", "TensorFlow", "AWS", "Docker"],
-            "achievements": [
-                "Increased system efficiency by 45%",
-                "Led team of 5 developers",
-                "Deployed ML models to production"
-            ]
-        },
-        {
-            "year": "2023",
-            "title": "Full-Stack Developer",
-            "company": "StartupXYZ",
-            "description": "Built scalable web applications and APIs serving thousands of users",
-            "technologies": ["React", "Node.js", "PostgreSQL", "AWS"],
-            "achievements": [
-                "Developed 3 major applications",
-                "Reduced load time by 60%",
-                "Implemented CI/CD pipeline"
-            ]
-        },
-        {
-            "year": "2022",
-            "title": "Backend Developer",
-            "company": "DataCorp Solutions",
-            "description": "Specialized in Python development and data processing systems",
-            "technologies": ["Python", "Django", "PostgreSQL", "Redis"],
-            "achievements": [
-                "Processed 10GB+ daily data",
-                "Built RESTful APIs",
-                "Optimized database queries"
-            ]
-        },
-        {
-            "year": "2021",
-            "title": "Junior Developer",
-            "company": "WebDev Agency",
-            "description": "Started professional journey with web development fundamentals",
-            "technologies": ["HTML", "CSS", "JavaScript", "PHP"],
-            "achievements": [
-                "Created 10+ websites",
-                "Learned modern frameworks",
-                "Collaborated with design team"
-            ]
-        }
+  {
+    "year": "2025",
+    "title": "AI/ML Developer & Full-Stack Project Builder",
+    "company": "Self-Driven Projects",
+    "description": "Currently learning Deep Learning, Data Science, and Cloud Computing while building AI-powered applications and dashboards.",
+    "technologies": ["Python", "NumPy", "Flask", "Django", "AI APIs", "AWS"],
+    "achievements": [
+      "Created AI projects like DeepShiva, VidSnap, and Analytics Dashboard",
+      "Integrated AI tools and APIs for image generation and text extraction",
+      "Learning Deep Learning (neural networks, transformers), data visualization, and cloud deployment"
+    ]
+  },
+  {
+    "year": "2024",
+    "title": "Frontend Developer & Python Programmer",
+    "company": "Personal Learning & Projects",
+    "description": "Started my coding journey with HTML, CSS, JavaScript, and Python — gradually moved into Flask and Django for full-stack applications.",
+    "technologies": ["HTML", "CSS", "JavaScript", "Python"],
+    "achievements": [
+      "Built projects like VanRakshak, NotesNest, EduHub, and YogFit",
+      "Learned frontend design principles and responsive layouts",
+      "Started working with AI APIs and automation scripts"
+    ]
+  }
     ]
 }
 
