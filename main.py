@@ -26,7 +26,7 @@ PORTFOLIO_DATA = {
     "skills": {
        "frontend": [
       { "name": "HTML5", "level": 90, "icon": "🌐" },
-      { "name": "CSS3", "level": 65, "icon": "🎨" },
+      { "name": "CSS3", "level": 60, "icon": "🎨" },
       { "name": "JavaScript", "level": 50, "icon": "⚡" },
       { "name": "Responsive Design", "level": 88, "icon": "📱" }
     ],
@@ -38,14 +38,17 @@ PORTFOLIO_DATA = {
     ],
     "ai_ml_programming": [
       { "name": "C Programming", "level": 75, "icon": "💻" },
-      { "name": "NumPy", "level": 70, "icon": "🔢" },
-      { "name": "AI Tools Integration", "level": 85, "icon": "🤖" },
-      { "name": "Data Analysis", "level": 65, "icon": "📊" }
+      { "name": "NumPy", "level": 50, "icon": "🔢" },
+      { "name": "Pandas", "level": 55, "icon": "�"},
+      { "name": "Matplotlib", "level": 55, "icon": "�"},
+      { "name": "AI Tools Integration", "level": 65, "icon": "🤖" },
+      { "name": "Data Analysis", "level": 60, "icon": "📊" }
     ],
         "tools": [
-            {"name": "Git", "level": 65, "icon": "🔧"},
+            {"name": "Git/Github", "level": 55, "icon": "🔧"},
             {"name": "AI-Tools", "level": 75, "icon": "🐼"},
             {"name": "NO-code/Low-code", "level": 75, "icon": "🍃"},
+            {"name": "Gen AI Tools ", "level": 80, "icon": "🤖"},
             # {"name": "Docker", "level": 70, "icon": "🐳"},
             # {"name": "AWS", "level": 65, "icon": "☁️"},
             # {"name": "PostgreSQL", "level": 80, "icon": "🐘"},
@@ -248,7 +251,7 @@ PORTFOLIO_DATA = {
     "achievements": [
       "Created AI projects like DeepShiva, VidSnap, and Analytics Dashboard",
       "Integrated AI tools and APIs for image generation and text extraction",
-      "Learning Deep Learning (neural networks, transformers), data visualization, and cloud deployment"
+      "Learning Deep Learning (neural networks, transformers), data visualization,"
     ]
   },
   {
@@ -272,7 +275,6 @@ TERMINAL_COMMANDS = {
     "about": "Display detailed information about me",
     "projects": "View my portfolio projects",
     "skills": "Check out my technical skills",
-    "journey": "View my career journey",
     "contact": "Get in touch with me",
     "resume": "Download my resume",
     "ls": "List available sections",
