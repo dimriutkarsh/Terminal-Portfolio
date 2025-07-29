@@ -16,6 +16,7 @@ PORTFOLIO_DATA = {
         "phone": "+91 XXXXX X6262",
         "github": "https://github.com/dimriutkarsh",
         "linkedin": "https://www.linkedin.com/in/utkarsh-dimri-029672242/",
+        "kaggle": "https://www.kaggle.com/utkarshdimri",
         "avatar": "UD",
         "bio": "Passionate AI/ML engineer with a strong foundation in full-stack development. I love building intelligent systems that solve real-world problems and constantly exploring new technologies to enhance productivity and innovation.",
         "status": "Available for opportunities",
@@ -44,11 +45,13 @@ PORTFOLIO_DATA = {
       { "name": "AI Tools Integration", "level": 65, "icon": "🤖" },
       { "name": "Data Analysis", "level": 60, "icon": "📊" }
     ],
-    "Web-Scrapping": [
+
+    "WebScrapping": [
       { "name": "Requests", "level": 65, "icon": "" },
       { "name": "BeautifulSoup", "level": 55, "icon": "" },
       { "name": "Data Analysis", "level": 60, "icon": "📊" }
     ],
+
         "tools": [
             {"name": "Git/Github", "level": 55, "icon": "🔧"},
             {"name": "AI-Tools", "level": 75, "icon": "🐼"},
