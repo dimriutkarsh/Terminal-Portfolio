@@ -44,6 +44,11 @@ PORTFOLIO_DATA = {
       { "name": "AI Tools Integration", "level": 65, "icon": "🤖" },
       { "name": "Data Analysis", "level": 60, "icon": "📊" }
     ],
+    "Web-Scrapping": [
+      { "name": "Requests", "level": 65, "icon": "" },
+      { "name": "BeautifulSoup", "level": 55, "icon": "" },
+      { "name": "Data Analysis", "level": 60, "icon": "📊" }
+    ],
         "tools": [
             {"name": "Git/Github", "level": 55, "icon": "🔧"},
             {"name": "AI-Tools", "level": 75, "icon": "🐼"},
