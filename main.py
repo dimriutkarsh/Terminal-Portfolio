@@ -51,6 +51,9 @@ PORTFOLIO_DATA = {
       { "name": "BeautifulSoup", "level": 55, "icon": "" },
       { "name": "Data Analysis", "level": 60, "icon": "📊" }
     ],
+    "Database": [
+      { "name": "sql", "level": 45, "icon": "🍃" },
+    ],
 
         "tools": [
             {"name": "Git/Github", "level": 55, "icon": "🔧"},

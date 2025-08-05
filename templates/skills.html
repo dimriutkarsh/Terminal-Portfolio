@@ -163,6 +163,39 @@
                 </div>
             </div>
 
+
+
+            <div class="terminal-window animate-fade-in" style="animation-delay: 0.3s">
+                <div class="terminal-header">
+                    <div class="terminal-buttons">
+                        <div class="terminal-button red"></div>
+                        <div class="terminal-button yellow"></div>
+                        <div class="terminal-button green"></div>
+                    </div>
+                    <div class="terminal-title">Database.json</div>
+                </div>
+                <div class="terminal-content">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                        <span class="mr-2">🤖</span>
+                        Databases
+                    </h3>
+                    {% for skill in skills.Database %}
+                    <div class="skill-bar">
+                        <div class="skill-name">
+                            <span class="flex items-center">
+                                <span class="mr-2">{{ skill.icon }}</span>
+                                {{ skill.name }}
+                            </span>
+                            <span class="text-terminal-green">{{ skill.level }}%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-fill" data-width="{{ skill.level }}"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
             <!-- Tools -->
             <div class="terminal-window animate-fade-in" style="animation-delay: 0.4s">
                 <div class="terminal-header">
